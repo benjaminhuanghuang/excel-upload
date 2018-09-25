@@ -16,7 +16,7 @@ class FileUpload extends React.Component {
     data.append('file', this.uploadInput.files[0]);
     //data.append('filename', this.fileName.value);  //Can give a desired file name 
 
-    fetch('http://localhost:8888/upload', {
+    fetch('http://localhost:8888/file', {
       method: 'POST',
       body: data,
     }).then((response) => {
@@ -27,8 +27,6 @@ class FileUpload extends React.Component {
     }, (err)=>{
       console.log(err);
     });
-
-    console.log("drddddd");
   }
 
   render() {
