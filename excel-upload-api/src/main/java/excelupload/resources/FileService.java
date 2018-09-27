@@ -3,9 +3,15 @@ package excelupload.resources;
 import com.codahale.metrics.annotation.Timed;
 import excelupload.data.Location;
 import excelupload.data.QuantumResult;
+
+//
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+//
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
@@ -42,8 +48,8 @@ public class FileService {
 
         List<Location> results = new ArrayList<Location>();
 
-        XSSFWorkbook wb = new XSSFWorkbook(uploadedInputStream);
-        XSSFSheet sheet = wb.getSheetAt(0);
+        Workbook wb = WorkbookFactory.create(uploadedInputStream);
+        Sheet sheet = wb.getSheetAt(0);
         int rowCount = sheet.getLastRowNum();
 
         //
